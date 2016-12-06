@@ -1,4 +1,5 @@
-﻿var dataFolder = "./data/"
+﻿var dataFolder = "../data/"
+var imageFolder = "../images/"
 var listFile = "images.txt"
 var imageExt = ".jpg"
 var level = 1
@@ -195,7 +196,7 @@ function getRandomImage(imgObj) {
     var tempFiles = files.splice(i, 1);
     setCookie("srcTopicList", JSON.stringify(files), 7);
 
-    imgObj.varFile = dataFolder + image + imageExt;
+    //imgObj.varFile = dataFolder + image + imageExt;
 
     var rate = level / divisor;
     if (level == 4) {
@@ -206,8 +207,9 @@ function getRandomImage(imgObj) {
     if (textList.length >= 2) {
         imgObj.varEng = textList[0];
         imgObj.varCht = textList[1];
+        imgObj.varFile = imageFolder + imgObj.varEng + imageExt;
         imgObj.varTopic = imgObj.varEng;
-
+        
         var num = Math.ceil(imgObj.varEng.length * rate);
         var total = 0;
         var strList = imgObj.varTopic.split('');
@@ -287,7 +289,7 @@ function checkAnswer() {
 function InitExercise() {
     isClearCookie = getUrlVars()["src"];
     level = getUrlVars()["lv"];
-
+    
     if (isClearCookie == 1) {
         clearAllCookies();
         isClearCookie = 0;
